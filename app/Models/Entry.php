@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * App\Entry
+ * App\Entry.
  *
  * @property int $id
  * @property int $team_id
@@ -41,7 +41,7 @@ class Entry extends Model
      *
      * @var array
      */
-    protected $fillable = ['team_id', 'event_id', 'name', 'url', 'source', 'description',];
+    protected $fillable = ['team_id', 'event_id', 'name', 'url', 'source', 'description'];
 
     /**
      * An entry belongs to a team

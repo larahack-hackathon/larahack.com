@@ -38,7 +38,7 @@ class VoteCategoryController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required'
+            'name' => 'required',
         ]);
 
         VoteCategory::create(['name' => $request->input('name')]);
@@ -68,7 +68,7 @@ class VoteCategoryController extends Controller
     public function update(Request $request, VoteCategory $category)
     {
         $request->validate([
-            'name' => 'required'
+            'name' => 'required',
         ]);
 
         $category->name = $request->input('name');

@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * App\Vote
+ * App\Vote.
  *
  * @property int $id
  * @property int $entry_id

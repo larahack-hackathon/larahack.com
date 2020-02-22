@@ -15,11 +15,11 @@ class CreateTeamsTable extends Migration
     {
         Schema::create('teams', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger( 'owner_id' );
-            $table->string( 'name' )->unique();
+            $table->unsignedBigInteger('owner_id');
+            $table->string('name')->unique();
             $table->timestamps();
 
-            $table->foreign( 'owner_id' )->references( 'id' )->on( 'users' );
+            $table->foreign('owner_id')->references('id')->on('users');
         });
     }
 

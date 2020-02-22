@@ -14,12 +14,12 @@ class CreateEventVoteCategoryTable extends Migration
     public function up()
     {
         Schema::create('event_vote_category', function (Blueprint $table) {
-            $table->unsignedBigInteger( 'event_id' );
-            $table->unsignedBigInteger( 'vote_category_id' );
+            $table->unsignedBigInteger('event_id');
+            $table->unsignedBigInteger('vote_category_id');
             $table->timestamps();
 
-            $table->foreign( 'event_id' )->references( 'id' )->on( 'events' );
-            $table->foreign( 'vote_category_id' )->references( 'id' )->on( 'vote_categories' );
+            $table->foreign('event_id')->references('id')->on('events');
+            $table->foreign('vote_category_id')->references('id')->on('vote_categories');
 
             $table->unique(['event_id', 'vote_category_id']);
         });

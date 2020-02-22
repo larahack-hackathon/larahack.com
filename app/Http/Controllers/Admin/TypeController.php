@@ -38,7 +38,7 @@ class TypeController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required'
+            'name' => 'required',
         ]);
 
         EventType::create(['name' => $request->input('name')]);
@@ -68,7 +68,7 @@ class TypeController extends Controller
     public function update(Request $request, EventType $type)
     {
         $request->validate([
-            'name' => 'required'
+            'name' => 'required',
         ]);
 
         $type->name = $request->input('name');
