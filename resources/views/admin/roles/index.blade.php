@@ -31,12 +31,14 @@
                                     <td>{{ $role->name }}</td>
                                     <td>{{ $role->users_count }}</td>
                                     <td>
-                                        <a href="{{ route('admin.roles.edit', $role) }}" class="btn">Edit</a>
-                                        <form action="{{ route('admin.roles.destroy', $role) }}" method="post">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button role="submit" class="btn btn-danger">Delete</button>
-                                        </form>
+                                        <div class="btn-group">
+                                            <a href="{{ route('admin.roles.edit', $role) }}" class="btn">Edit</a>
+                                            <form action="{{ route('admin.roles.destroy', $role) }}" method="post">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button role="submit" class="btn btn-danger">Delete</button>
+                                            </form>
+                                        </div>
                                     </td>
                                 </tr>
                             @endforeach

@@ -43,12 +43,14 @@
                                     <td>{{ $event->entries_count }}</td>
                                     <td>{{ $event->active }}</td>
                                     <td>
-                                        <a href="{{ route('admin.events.edit', $event) }}" class="btn">Edit</a>
-                                        <form action="{{ route('admin.events.destroy', $event) }}" method="post">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-danger">Delete</button>
-                                        </form>
+                                        <div class="btn-group">
+                                            <a href="{{ route('admin.events.edit', $event) }}" class="btn">Edit</a>
+                                            <form action="{{ route('admin.events.destroy', $event) }}" method="post">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger">Delete</button>
+                                            </form>
+                                        </div>
                                     </td>
                                 </tr>
                             @endforeach

@@ -29,12 +29,14 @@
                                     <td>{{ $type->id }}</td>
                                     <td>{{ $type->name }}</td>
                                     <td>
-                                        <a href="{{ route('admin.types.edit', $type) }}" class="btn">Edit</a>
-                                        <form action="{{ route('admin.types.destroy', $type) }}" method="post">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-danger">Delete</button>
-                                        </form>
+                                        <div class="btn-group">
+                                            <a href="{{ route('admin.types.edit', $type) }}" class="btn">Edit</a>
+                                            <form action="{{ route('admin.types.destroy', $type) }}" method="post">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger">Delete</button>
+                                            </form>
+                                        </div>
                                     </td>
                                 </tr>
                             @endforeach
