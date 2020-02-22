@@ -18,3 +18,18 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::middleware(['auth'])->group(function (){
+
+    Route::prefix('teams')->name('teams.')->group(function (){
+        Route::get('/', 'TeamController@index')->name('index');
+        Route::get('/create', 'TeamController@create')->name('create');
+        Route::post('/', 'TeamController@store')->name('store');
+
+        Route::prefix('/{team}')->group(function (){
+            Route::get('/edit', 'TeamController@edit')->name('edit');
+            Route::post('/', 'TeamController@update')->name('update');
+            Route::delete('/', 'TeamController@destroy')->name('destroy');
+        });
+    });
+});
