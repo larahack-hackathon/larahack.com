@@ -38,7 +38,7 @@ class Team extends Model
 
     /**
      * A team belongs to a user.
-     * 
+     *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function owner()

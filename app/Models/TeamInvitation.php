@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * App\Models\TeamInvitation.
+ * App\Models\TeamInvitation
  *
  * @method static \Illuminate\Database\Eloquent\Builder|\App\TeamInvitation newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\TeamInvitation newQuery()
