@@ -30,6 +30,18 @@
                             </div>
 
                             <div class="form-group">
+                                <label for="vote_category_ids[]">Voting Categories</label>
+                                <select class="form-control @error('vote_category_ids[]') is-invalid @enderror" name="vote_category_ids[]" id="vote_category_ids[]" multiple>
+                                    @foreach($vote_categories as $vote_category)
+                                        <option value="{{ $vote_category->id }}" @if (in_array($vote_category->id, $event->vote_categories->pluck('id')->toArray())) selected @endif>{{ $vote_category->name }}</option>
+                                    @endforeach
+                                </select>
+                                @error('vote_category_ids[]')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <div class="form-group">
                                 <label for="name">Name</label>
                                 <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" value="{{ old('name', $event->name) }}">
                                 @error('name')
