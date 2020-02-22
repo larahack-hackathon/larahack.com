@@ -13,7 +13,7 @@ class TeamController extends Controller
      */
     public function index()
     {
-        return view( 'teams.index' )->with( 'teams', auth()->user()->teams()->withCount('users')->get() );
+        return view('teams.index')->with('teams', auth()->user()->teams()->withCount('users')->get());
     }
 
     /**
