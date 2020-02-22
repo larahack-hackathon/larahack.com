@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\EventRequest;
 use App\Models\Event;
 use App\Models\EventType;
+use App\Models\VoteCategory;
 
 class EventController extends Controller
 {
@@ -28,7 +29,8 @@ class EventController extends Controller
     public function create()
     {
         return view('admin.events.create')
-            ->with('types', EventType::all());
+            ->with('types', EventType::all())
+            ->with('vote_categories', VoteCategory::all());
     }
 
     /**
@@ -41,7 +43,9 @@ class EventController extends Controller
     {
         $data = $request->validated();
 
-        Event::create($data);
+        $event = Event::create($data);
+
+        $event->vote_categories()->sync($data['vote_category_ids']);
 
         return redirect()->route('admin.events.index')->with('success', 'Event Created');
     }
@@ -56,7 +60,8 @@ class EventController extends Controller
     {
         return view('admin.events.edit')
             ->with('types', EventType::all())
-            ->with('event', $event);
+            ->with('event', $event)
+            ->with('vote_categories', VoteCategory::all());
     }
 
     /**
@@ -69,6 +74,8 @@ class EventController extends Controller
     public function update(EventRequest $request, Event $event)
     {
         $event->update($request->validated());
+
+        $event->vote_categories()->sync($request->input('vote_category_ids'));
 
         return redirect()->route('admin.events.index')->with('success', 'Event Updated');
     }
