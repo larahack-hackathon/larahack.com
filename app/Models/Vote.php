@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -29,18 +29,38 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Vote extends Model
 {
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
     protected $fillable = ['entry_id', 'user_id', 'vote_category_id'];
 
+    /**
+     * A vote belongs to an entry
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function entry()
     {
         return $this->belongsTo(Entry::class);
     }
 
+    /**
+     * A vote belongs to a user
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function user()
     {
         return $this->belongsTo(User::class);
     }
 
+    /**
+     * A vote belongs to a vote category
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function category()
     {
         return $this->belongsTo(VoteCategory::class);

@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -36,18 +36,38 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Entry extends Model
 {
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
     protected $fillable = ['team_id', 'event_id', 'name', 'url', 'source', 'description'];
 
+    /**
+     * An entry belongs to a team
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function team()
     {
         return $this->belongsTo(Team::class);
     }
 
+    /**
+     * An entry belongs to an event
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function event()
     {
         return $this->belongsTo(Event::class);
     }
 
+    /**
+     * An entry has many votes
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function votes()
     {
         return $this->hasMany(Vote::class);

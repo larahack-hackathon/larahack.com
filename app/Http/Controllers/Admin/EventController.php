@@ -2,26 +2,42 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Event;
-use App\EventType;
-use App\Http\Controllers\Controller;
 use Carbon\Carbon;
+use App\Models\Event;
+use App\Models\EventType;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class EventController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
         return view('admin.events.index')
             ->with('events', Event::with('type')->withCount('entries')->get());
     }
 
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function create()
     {
         return view('admin.events.create')
             ->with('types', EventType::all());
     }
 
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function store(Request $request)
     {
         $data = $request->validate([
@@ -45,6 +61,12 @@ class EventController extends Controller
         return redirect()->route('admin.events.index')->with('success', 'Event Created');
     }
 
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Models\Event  $event
+     * @return \Illuminate\Http\Response
+     */
     public function edit(Event $event)
     {
         return view('admin.events.edit')
@@ -52,6 +74,13 @@ class EventController extends Controller
             ->with('event', $event);
     }
 
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Event  $event
+     * @return \Illuminate\Http\Response
+     */
     public function update(Request $request, Event $event)
     {
         $request->validate([
@@ -88,6 +117,12 @@ class EventController extends Controller
         return redirect()->route('admin.events.index')->with('success', 'Event Updated');
     }
 
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Models\Event  $event
+     * @return \Illuminate\Http\Response
+     */
     public function destroy(Event $event)
     {
         try {
