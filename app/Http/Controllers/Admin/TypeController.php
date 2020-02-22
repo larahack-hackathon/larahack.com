@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\EventType;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\EventTypeRequest;
+use App\Models\EventType;
 
 class TypeController extends Controller
 {

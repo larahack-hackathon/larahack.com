@@ -36,7 +36,7 @@ class Team extends Model
     protected $fillable = ['owner_id', 'name'];
 
     /**
-     * A team belongs to many users
+     * A team belongs to many users.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
@@ -46,7 +46,7 @@ class Team extends Model
     }
 
     /**
-     * A team has many entries
+     * A team has many entries.
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */

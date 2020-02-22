@@ -34,7 +34,7 @@ class VoteCategory extends Model
     protected $fillable = ['name'];
 
     /**
-     * A vote category belongs to meny events
+     * A vote category belongs to meny events.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
@@ -44,7 +44,7 @@ class VoteCategory extends Model
     }
 
     /**
-     * A vote category has many votes
+     * A vote category has many votes.
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */

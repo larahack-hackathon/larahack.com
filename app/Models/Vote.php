@@ -37,7 +37,7 @@ class Vote extends Model
     protected $fillable = ['entry_id', 'user_id', 'vote_category_id'];
 
     /**
-     * A vote belongs to an entry
+     * A vote belongs to an entry.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
@@ -47,7 +47,7 @@ class Vote extends Model
     }
 
     /**
-     * A vote belongs to a user
+     * A vote belongs to a user.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
@@ -57,7 +57,7 @@ class Vote extends Model
     }
 
     /**
-     * A vote belongs to a vote category
+     * A vote belongs to a vote category.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
