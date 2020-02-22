@@ -38,6 +38,7 @@ class RoleController extends Controller
     public function store(RoleRequest $request)
     {
         Role::create($request->validated());
+
         return redirect()->route('admin.roles.index')->with('success', 'Role Created');
     }
 
@@ -62,9 +63,11 @@ class RoleController extends Controller
     public function update(RoleRequest $request, Role $role)
     {
         $role->update($request->validated());
+
         if (! $request->has('is_admin')) {
             $role->update(['is_admin' => 0]);
         }
+
         return redirect()->route('admin.roles.index')->with('success', 'Role Updated');
     }
 

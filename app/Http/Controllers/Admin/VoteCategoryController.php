@@ -63,6 +63,7 @@ class VoteCategoryController extends Controller
     public function update(VoteCategoryRequest $request, VoteCategory $voteCategory)
     {
         $category->update($request->validated());
+
         return redirect()->route('admin.vote-categories.index')->with('success', 'Vote Category Updated');
     }
 
