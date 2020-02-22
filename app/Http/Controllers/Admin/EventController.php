@@ -22,7 +22,7 @@ class EventController extends Controller
             ->with('types', EventType::all());
     }
 
-    public function store( Request $request )
+    public function store(Request $request)
     {
         $data = $request->validate([
             'event_type_id' => ['required', 'exists:'.EventType::class.',id'],
@@ -45,14 +45,14 @@ class EventController extends Controller
         return redirect()->route('admin.events.index')->with('success', 'Event Created');
     }
 
-    public function edit( Event $event )
+    public function edit(Event $event)
     {
         return view('admin.events.edit')
             ->with('types', EventType::all())
             ->with('event', $event);
     }
 
-    public function update( Request $request, Event $event )
+    public function update(Request $request, Event $event)
     {
         $request->validate([
             'event_type_id' => ['required', 'exists:'.EventType::class.',id'],
@@ -88,11 +88,11 @@ class EventController extends Controller
         return redirect()->route('admin.events.index')->with('success', 'Event Updated');
     }
 
-    public function destroy( Event $event )
+    public function destroy(Event $event)
     {
-        try{
+        try {
             $event->delete();
-        } catch(\Throwable $exception){
+        } catch (\Throwable $exception) {
             return redirect()->route('admin.events.index')->with('error', $exception->getMessage());
         }
 

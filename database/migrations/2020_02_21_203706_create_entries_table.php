@@ -15,16 +15,16 @@ class CreateEntriesTable extends Migration
     {
         Schema::create('entries', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger( 'team_id' );
-            $table->unsignedBigInteger( 'event_id' );
-            $table->string( 'name' )->nullable();
-            $table->string( 'url' )->nullable();
-            $table->string( 'source' )->nullable();
-            $table->text( 'description' )->nullable();
+            $table->unsignedBigInteger('team_id');
+            $table->unsignedBigInteger('event_id');
+            $table->string('name')->nullable();
+            $table->string('url')->nullable();
+            $table->string('source')->nullable();
+            $table->text('description')->nullable();
             $table->timestamps();
 
-            $table->foreign( 'team_id' )->references( 'id' )->on( 'teams' );
-            $table->foreign( 'event_id' )->references( 'id' )->on( 'events' );
+            $table->foreign('team_id')->references('id')->on('teams');
+            $table->foreign('event_id')->references('id')->on('events');
         });
     }
 

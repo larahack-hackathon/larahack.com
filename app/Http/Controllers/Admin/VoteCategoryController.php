@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\VoteCategory;
 use App\Http\Controllers\Controller;
+use App\VoteCategory;
 use Illuminate\Http\Request;
 
 class VoteCategoryController extends Controller
@@ -19,10 +19,10 @@ class VoteCategoryController extends Controller
         return view('admin.vote-categories.create');
     }
 
-    public function store( Request $request )
+    public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required'
+            'name' => 'required',
         ]);
 
         VoteCategory::create(['name' => $request->input('name')]);
@@ -30,16 +30,16 @@ class VoteCategoryController extends Controller
         return redirect()->route('admin.vote-categories.index')->with('success', 'Vote Category Created');
     }
 
-    public function edit( VoteCategory $category )
+    public function edit(VoteCategory $category)
     {
         return view('admin.vote-categories.edit')
             ->with('category', $category);
     }
 
-    public function update( Request $request, VoteCategory $category )
+    public function update(Request $request, VoteCategory $category)
     {
         $request->validate([
-            'name' => 'required'
+            'name' => 'required',
         ]);
 
         $category->name = $request->input('name');
@@ -48,11 +48,11 @@ class VoteCategoryController extends Controller
         return redirect()->route('admin.vote-categories.index')->with('success', 'Vote Category Updated');
     }
 
-    public function destroy( VoteCategory $category )
+    public function destroy(VoteCategory $category)
     {
-        try{
+        try {
             $category->delete();
-        } catch(\Throwable $exception){
+        } catch (\Throwable $exception) {
             return redirect()->route('admin.vote-categories.index')->with('error', $exception->getMessage());
         }
 

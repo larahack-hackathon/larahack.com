@@ -19,10 +19,10 @@ class TypeController extends Controller
         return view('admin.types.create');
     }
 
-    public function store( Request $request )
+    public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required'
+            'name' => 'required',
         ]);
 
         EventType::create(['name' => $request->input('name')]);
@@ -30,16 +30,16 @@ class TypeController extends Controller
         return redirect()->route('admin.types.index')->with('success', 'Event Type Created');
     }
 
-    public function edit( EventType $type )
+    public function edit(EventType $type)
     {
         return view('admin.types.edit')
             ->with('type', $type);
     }
 
-    public function update( Request $request, EventType $type )
+    public function update(Request $request, EventType $type)
     {
         $request->validate([
-            'name' => 'required'
+            'name' => 'required',
         ]);
 
         $type->name = $request->input('name');
@@ -48,11 +48,11 @@ class TypeController extends Controller
         return redirect()->route('admin.types.index')->with('success', 'Event Type Updated');
     }
 
-    public function destroy( EventType $type )
+    public function destroy(EventType $type)
     {
-        try{
+        try {
             $type->delete();
-        } catch(\Throwable $exception){
+        } catch (\Throwable $exception) {
             return redirect()->route('admin.types.index')->with('error', $exception->getMessage());
         }
 

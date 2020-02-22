@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * App\EventType
+ * App\EventType.
  *
  * @property int $id
  * @property string $name

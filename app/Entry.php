@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * App\Entry
+ * App\Entry.
  *
  * @property int $id
  * @property int $team_id
@@ -36,7 +36,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Entry extends Model
 {
-    protected $fillable = ['team_id', 'event_id', 'name', 'url', 'source', 'description',];
+    protected $fillable = ['team_id', 'event_id', 'name', 'url', 'source', 'description'];
 
     public function team()
     {
