@@ -1,8 +1,15 @@
 php:
   preset: laravel
+  risky: true
+  enabled:
+    - long_array_syntax
   disabled:
-    - unused_use
+    - align_double_arrow
   finder:
-    not-name:
-      - index.php
-      - server.php
+    exclude:
+      - modules
+      - node_modules
+      - storage
+      - vendor
+    name: "*.php"
+    not-name: "*.blade.php"
