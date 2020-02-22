@@ -5,16 +5,19 @@
                 Admin
             </a>
         </li>
+
         <li class="nav-item">
             <a class="nav-link <?php echo isset($page) && $page === 'types' ? 'active' : '' ?>" href="{{ route('admin.types.index') }}">
                 Event Types
             </a>
         </li>
+
         <li class="nav-item">
             <a class="nav-link <?php echo isset($page) && $page === 'vote-categories' ? 'active' : '' ?>" href="{{ route('admin.vote-categories.index') }}">
                 Vote Categories
             </a>
         </li>
+
         <li class="nav-item">
             <a class="nav-link <?php echo isset($page) && $page === 'events' ? 'active' : '' ?>" href="{{ route('admin.events.index') }}">
                 Events
@@ -24,6 +27,12 @@
         <li class="nav-item">
             <a class="nav-link <?php echo isset($page) && $page === 'roles' ? 'active' : '' ?>" href="{{ route('admin.roles.index') }}">
                 Roles
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link <?php echo isset($page) && $page === 'users' ? 'active' : '' ?>" href="{{ route('admin.users.index') }}">
+                Users
             </a>
         </li>
     </ul>

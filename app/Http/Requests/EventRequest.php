@@ -14,10 +14,7 @@ class EventRequest extends FormRequest
      */
     public function authorize()
     {
-        /**
-         * @todo use $user->isAdmin
-         */
-        return true;
+        return auth()->check() && auth()->user()->hasRole('Administrator');
     }
 
     /**
