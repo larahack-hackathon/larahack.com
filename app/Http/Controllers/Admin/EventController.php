@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Carbon\Carbon;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\EventRequest;
 use App\Models\Event;
 use App\Models\EventType;
-use App\Http\Requests\EventRequest;
-use App\Http\Controllers\Controller;
 
 class EventController extends Controller
 {

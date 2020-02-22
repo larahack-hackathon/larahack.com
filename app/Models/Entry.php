@@ -44,7 +44,7 @@ class Entry extends Model
     protected $fillable = ['team_id', 'event_id', 'name', 'url', 'source', 'description'];
 
     /**
-     * An entry belongs to a team
+     * An entry belongs to a team.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
@@ -54,7 +54,7 @@ class Entry extends Model
     }
 
     /**
-     * An entry belongs to an event
+     * An entry belongs to an event.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
@@ -64,7 +64,7 @@ class Entry extends Model
     }
 
     /**
-     * An entry has many votes
+     * An entry has many votes.
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */

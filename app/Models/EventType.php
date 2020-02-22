@@ -32,7 +32,7 @@ class EventType extends Model
     protected $fillable = ['name'];
 
     /**
-     * An event type has many events
+     * An event type has many events.
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
