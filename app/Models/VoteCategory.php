@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * App\VoteCategory.
+ * App\Models\VoteCategory.
  *
  * @property int $id
  * @property string $name

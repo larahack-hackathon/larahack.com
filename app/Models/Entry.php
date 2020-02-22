@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * App\Entry.
+ * App\Models\Entry.
  *
  * @property int $id
  * @property int $team_id
