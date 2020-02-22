@@ -38,7 +38,7 @@ class EventRequest extends FormRequest
             'runner_up_prize' => ['nullable', 'string'],
             'runner_up_amount' => ['nullable', 'integer'],
             'active' => ['required', 'boolean'],
-            'vote_category_ids' => ['required']
+            'vote_category_ids' => ['required'],
         ];
     }
 }
