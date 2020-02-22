@@ -24,3 +24,13 @@ Route::resource('events', 'EventController')->except(['show']);
  * @link /admin/roles/*
  */
 Route::resource('roles', 'RoleController')->except(['show']);
+
+/**
+ * @link /admin/users/*
+ */
+Route::resource('users', 'UserController')->except(['show']);
+
+/**
+ * @link /admin/user-roles/*
+ */
+Route::resource('user-roles', 'UserRoleController')->only(['update']);

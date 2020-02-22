@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class EventTypeRequest extends FormRequest
+class UserRoleRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +24,7 @@ class EventTypeRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required',
+            //
         ];
     }
 }
