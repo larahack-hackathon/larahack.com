@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserRoleRequest;
-use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -21,6 +20,7 @@ class UserRoleController extends Controller
     {
         $user = User::find($user);
         $user->roles()->sync($request->input('role_ids'));
+
         return redirect()->route('admin.users.index')->with('success', 'User Updated');
     }
 }
