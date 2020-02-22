@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * App\Team
+ * App\Team.
  *
  * @property int $id
  * @property int $owner_id
@@ -28,13 +28,28 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Team extends Model
 {
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
     protected $fillable = ['owner_id', 'name'];
 
+    /**
+     * A team belongs to many users
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
     public function user()
     {
         return $this->belongsToMany(User::class)->withTimestamps();
     }
 
+    /**
+     * A team has many entries
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function entries()
     {
         return $this->hasMany(Entry::class);

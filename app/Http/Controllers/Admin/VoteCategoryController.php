@@ -2,57 +2,81 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\VoteCategory;
-use App\Http\Controllers\Controller;
+use App\Models\VoteCategory;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\VoteCategoryRequest;
 
 class VoteCategoryController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
-        return view('admin.vote-categories.index')
-            ->with('categories', VoteCategory::all());
+        return view('admin.vote-categories.index')->with('categories', VoteCategory::all());
     }
 
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function create()
     {
         return view('admin.vote-categories.create');
     }
 
-    public function store( Request $request )
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \App\Http\Requests\VoteCategoryRequest  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(VoteCategoryRequest $request)
     {
-        $request->validate([
-            'name' => 'required'
-        ]);
-
-        VoteCategory::create(['name' => $request->input('name')]);
+        VoteCategory::create($request->validated());
 
         return redirect()->route('admin.vote-categories.index')->with('success', 'Vote Category Created');
     }
 
-    public function edit( VoteCategory $category )
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Models\VoteCategory  $category
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(VoteCategory $category)
     {
-        return view('admin.vote-categories.edit')
-            ->with('category', $category);
+        return view('admin.vote-categories.edit')->with('category', $category);
     }
 
-    public function update( Request $request, VoteCategory $category )
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \App\Http\Requests\VoteCategoryRequest  $request
+     * @param  \App\Models\VoteCategory  $category
+     * @return \Illuminate\Http\Response
+     */
+    public function update(VoteCategoryRequest $request, VoteCategory $category)
     {
-        $request->validate([
-            'name' => 'required'
-        ]);
-
-        $category->name = $request->input('name');
-        $category->save();
-
+        $category->update($request->validated());
         return redirect()->route('admin.vote-categories.index')->with('success', 'Vote Category Updated');
     }
 
-    public function destroy( VoteCategory $category )
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Models\VoteCategory  $category
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(VoteCategory $category)
     {
-        try{
+        try {
             $category->delete();
-        } catch(\Throwable $exception){
+        } catch (\Throwable $exception) {
             return redirect()->route('admin.vote-categories.index')->with('error', $exception->getMessage());
         }
 

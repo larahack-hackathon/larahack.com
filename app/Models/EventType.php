@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * App\EventType
+ * App\EventType.
  *
  * @property int $id
  * @property string $name
@@ -24,8 +24,18 @@ use Illuminate\Database\Eloquent\Model;
  */
 class EventType extends Model
 {
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
     protected $fillable = ['name'];
 
+    /**
+     * An event type has many events
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function events()
     {
         return $this->hasMany(Event::class);
