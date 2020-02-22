@@ -74,7 +74,7 @@ class Event extends Model
     ];
 
     /**
-     * An event belongs to an event type
+     * An event belongs to an event type.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
@@ -84,7 +84,7 @@ class Event extends Model
     }
 
     /**
-     * An event has many entries
+     * An event has many entries.
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
@@ -94,7 +94,7 @@ class Event extends Model
     }
 
     /**
-     * An event belongs to many voting categories
+     * An event belongs to many voting categories.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
@@ -104,7 +104,7 @@ class Event extends Model
     }
 
     /**
-     * Save the Start At attribute as a Carbon Instance
+     * Save the Start At attribute as a Carbon Instance.
      *
      * @return void
      */
@@ -114,7 +114,7 @@ class Event extends Model
     }
 
     /**
-     * Save the Voting Start At attribute as a Carbon Instance
+     * Save the Voting Start At attribute as a Carbon Instance.
      *
      * @return void
      */
@@ -124,7 +124,7 @@ class Event extends Model
     }
 
     /**
-     * Save the End At attribute as a Carbon Instance
+     * Save the End At attribute as a Carbon Instance.
      *
      * @return void
      */

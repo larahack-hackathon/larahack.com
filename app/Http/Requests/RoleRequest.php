@@ -28,7 +28,7 @@ class RoleRequest extends FormRequest
     {
         return [
             'name' => 'required|unique:roles,name,'.$this->id,
-            'is_admin' => 'boolean'
+            'is_admin' => 'boolean',
         ];
     }
 }

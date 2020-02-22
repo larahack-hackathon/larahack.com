@@ -65,7 +65,7 @@ class User extends Authenticatable
     ];
 
     /**
-     * A user belongs to many teams
+     * A user belongs to many teams.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
@@ -75,7 +75,7 @@ class User extends Authenticatable
     }
 
     /**
-     * A user has many votes
+     * A user has many votes.
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
@@ -95,7 +95,7 @@ class User extends Authenticatable
     }
 
     /**
-     * Helper method to check if a user has a role
+     * Helper method to check if a user has a role.
      *
      * @return boolean
      */
