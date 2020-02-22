@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Carbon\Carbon;
 use App\Models\Event;
 use App\Models\EventType;
-use Illuminate\Http\Request;
+use App\Http\Requests\EventRequest;
 use App\Http\Controllers\Controller;
 
 class EventController extends Controller
@@ -35,26 +35,12 @@ class EventController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\EventRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(EventRequest $request)
     {
-        $data = $request->validate([
-            'event_type_id' => ['required', 'exists:'.EventType::class.',id'],
-            'name' => ['required', 'string'],
-            'start_at' => ['nullable', 'date'],
-            'voting_start_at' => ['nullable', 'date'],
-            'end_at' => ['nullable', 'date'],
-            'theme' => ['nullable', 'string'],
-            'description' => ['nullable', 'string'],
-            'first_place_prize' => ['nullable', 'string'],
-            'second_place_prize' => ['nullable', 'string'],
-            'third_place_prize' => ['nullable', 'string'],
-            'runner_up_prize' => ['nullable', 'string'],
-            'runner_up_amount' => ['nullable', 'integer'],
-            'active' => ['required', 'boolean'],
-        ]);
+        $data = $request->validated();
 
         Event::create($data);
 
@@ -77,42 +63,13 @@ class EventController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\EventRequest  $request
      * @param  \App\Models\Event  $event
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Event $event)
+    public function update(EventRequest $request, Event $event)
     {
-        $request->validate([
-            'event_type_id' => ['required', 'exists:'.EventType::class.',id'],
-            'name' => ['required', 'string'],
-            'start_at' => ['nullable', 'date'],
-            'voting_start_at' => ['nullable', 'date'],
-            'end_at' => ['nullable', 'date'],
-            'theme' => ['nullable', 'string'],
-            'description' => ['nullable', 'string'],
-            'first_place_prize' => ['nullable', 'string'],
-            'second_place_prize' => ['nullable', 'string'],
-            'third_place_prize' => ['nullable', 'string'],
-            'runner_up_prize' => ['nullable', 'string'],
-            'runner_up_amount' => ['nullable', 'integer'],
-            'active' => ['required', 'boolean'],
-        ]);
-
-        $event->event_type_id = $request->input('event_type_id');
-        $event->name = $request->input('name');
-        $event->start_at = Carbon::make($request->input('start_at'));
-        $event->voting_start_at = Carbon::make($request->input('voting_start_at'));
-        $event->end_at = Carbon::make($request->input('end_at'));
-        $event->theme = $request->input('theme');
-        $event->description = $request->input('description');
-        $event->first_place_prize = $request->input('first_place_prize');
-        $event->second_place_prize = $request->input('second_place_prize');
-        $event->third_place_prize = $request->input('third_place_prize');
-        $event->runner_up_prize = $request->input('runner_up_prize');
-        $event->runner_up_amount = $request->input('runner_up_amount');
-        $event->active = $request->input('active');
-        $event->save();
+        $event->update($request->validated());
 
         return redirect()->route('admin.events.index')->with('success', 'Event Updated');
     }

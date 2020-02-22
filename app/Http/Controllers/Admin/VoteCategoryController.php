@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\VoteCategory;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\VoteCategoryRequest;
 
 class VoteCategoryController extends Controller
 {
@@ -15,8 +16,7 @@ class VoteCategoryController extends Controller
      */
     public function index()
     {
-        return view('admin.vote-categories.index')
-            ->with('categories', VoteCategory::all());
+        return view('admin.vote-categories.index')->with('categories', VoteCategory::all());
     }
 
     /**
@@ -32,16 +32,12 @@ class VoteCategoryController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\VoteCategoryRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(VoteCategoryRequest $request)
     {
-        $request->validate([
-            'name' => 'required',
-        ]);
-
-        VoteCategory::create(['name' => $request->input('name')]);
+        VoteCategory::create($request->validated());
 
         return redirect()->route('admin.vote-categories.index')->with('success', 'Vote Category Created');
     }
@@ -54,26 +50,19 @@ class VoteCategoryController extends Controller
      */
     public function edit(VoteCategory $category)
     {
-        return view('admin.vote-categories.edit')
-            ->with('category', $category);
+        return view('admin.vote-categories.edit')->with('category', $category);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\VoteCategoryRequest  $request
      * @param  \App\Models\VoteCategory  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, VoteCategory $category)
+    public function update(VoteCategoryRequest $request, VoteCategory $category)
     {
-        $request->validate([
-            'name' => 'required',
-        ]);
-
-        $category->name = $request->input('name');
-        $category->save();
-
+        $category->update($request->validated());
         return redirect()->route('admin.vote-categories.index')->with('success', 'Vote Category Updated');
     }
 
