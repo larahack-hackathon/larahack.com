@@ -20,7 +20,6 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::middleware(['auth'])->group(function () {
-
     Route::prefix('teams')->name('teams.')->group(function () {
         Route::get('/', 'TeamController@index')->name('index');
         Route::get('/create', 'TeamController@create')->name('create');
