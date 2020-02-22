@@ -14,29 +14,35 @@ use Illuminate\Database\Eloquent\Model;
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Entry[] $entries
  * @property-read int|null $entries_count
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\User[] $user
- * @property-read int|null $user_count
+ * @property-read \App\User $owner
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\User[] $users
+ * @property-read int|null $users_count
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Team newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Team newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Team query()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Team whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Team whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Team whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Team whereOwnerId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Team whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Team whereCreatedAt( $value )
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Team whereId( $value )
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Team whereName( $value )
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Team whereOwnerId( $value )
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Team whereUpdatedAt( $value )
  * @mixin \Eloquent
  */
 class Team extends Model
 {
-    protected $fillable = ['owner_id', 'name'];
+    protected $fillable = [ 'owner_id', 'name' ];
 
-    public function user()
+    public function owner()
     {
-        return $this->belongsToMany(User::class)->withTimestamps();
+        return $this->belongsTo( User::class, 'owner_id' );
+    }
+
+    public function users()
+    {
+        return $this->belongsToMany( User::class )->withTimestamps();
     }
 
     public function entries()
     {
-        return $this->hasMany(Entry::class);
+        return $this->hasMany( Entry::class );
     }
 }
