@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests\RoleRequest;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\RoleRequest;
 use App\Models\Role;
 use Illuminate\Http\Request;
 

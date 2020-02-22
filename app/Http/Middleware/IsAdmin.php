@@ -18,7 +18,7 @@ class IsAdmin
         if ((auth()->check()) && (auth()->user()->hasRole('Administrator'))) {
             return $next($request);
         }
-        
+
         return back();
     }
 }
