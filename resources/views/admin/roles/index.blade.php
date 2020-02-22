@@ -4,14 +4,14 @@
 
     <div class="container">
         <div class="row">
-            @include('admin.nav', ['page' => 'types'])
+            @include('admin.nav', ['page' => 'roles'])
             @include('admin.messages')
 
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        Event Types
-                        <a href="{{ route('admin.types.create') }}" class="btn btn-primary btn-sm float-right">New</a>
+                        User Roles
+                        <a href="{{ route('admin.roles.create') }}" class="btn btn-primary btn-sm float-right">New</a>
                     </div>
 
                         <table class="table card-body">
@@ -19,22 +19,24 @@
                             <tr>
                                 <th>ID</th>
                                 <th>Name</th>
+                                <th>Users</th>
                                 <th></th>
                             </tr>
                             </thead>
                             <tbody>
-                            <?php /** @var \App\EventType $type */ ?>
-                            @foreach($types as $type)
+                            <?php /** @var \App\Models\Role $role */ ?>
+                            @foreach($roles as $role)
                                 <tr>
-                                    <td>{{ $type->id }}</td>
-                                    <td>{{ $type->name }}</td>
+                                    <td>{{ $role->id }}</td>
+                                    <td>{{ $role->name }}</td>
+                                    <td>{{ $role->users_count }}</td>
                                     <td>
                                         <div class="btn-group">
-                                            <a href="{{ route('admin.types.edit', $type) }}" class="btn">Edit</a>
-                                            <form action="{{ route('admin.types.destroy', $type) }}" method="post">
+                                            <a href="{{ route('admin.roles.edit', $role) }}" class="btn">Edit</a>
+                                            <form action="{{ route('admin.roles.destroy', $role) }}" method="post">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="btn btn-danger">Delete</button>
+                                                <button role="submit" class="btn btn-danger">Delete</button>
                                             </form>
                                         </div>
                                     </td>

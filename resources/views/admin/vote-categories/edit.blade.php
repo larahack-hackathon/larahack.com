@@ -14,9 +14,10 @@
                     <div class="card-body">
                         <form action="{{ route('admin.vote-categories.update', $category) }}" method="post">
                             @csrf
+                            @method('PATCH')
 
                             <div class="form-group">
-                                <label for="id">Id</label>
+                                <label for="id">ID</label>
                                 <input type="text" class="form-control" id="id" name="id" readonly value="{{ $category->id }}">
                             </div>
 
