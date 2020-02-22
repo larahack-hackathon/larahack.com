@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\EventType;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\EventTypeRequest;
 
@@ -16,8 +15,7 @@ class TypeController extends Controller
      */
     public function index()
     {
-        return view('admin.types.index')
-            ->with('types', EventType::all());
+        return view('admin.types.index')->with('types', EventType::all());
     }
 
     /**
@@ -33,12 +31,12 @@ class TypeController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\EventTypeRequest $request
      * @return \Illuminate\Http\Response
      */
     public function store(EventTypeRequest $request)
     {
-        EventType::create(['name' => $request->input('name')]);
+        EventType::create($request->validated());
 
         return redirect()->route('admin.types.index')->with('success', 'Event Type Created');
     }
@@ -51,8 +49,7 @@ class TypeController extends Controller
      */
     public function edit(EventType $type)
     {
-        return view('admin.types.edit')
-            ->with('type', $type);
+        return view('admin.types.edit')->with('type', $type);
     }
 
     /**
@@ -64,8 +61,7 @@ class TypeController extends Controller
      */
     public function update(EventTypeRequest $request, EventType $type)
     {
-        $type->name = $request->input('name');
-        $type->save();
+        $type->update($request->validated());
 
         return redirect()->route('admin.types.index')->with('success', 'Event Type Updated');
     }
