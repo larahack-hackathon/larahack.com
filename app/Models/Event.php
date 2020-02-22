@@ -105,7 +105,7 @@ class Event extends Model
 
     /**
      * Save the Start At attribute as a Carbon Instance
-     * 
+     *
      * @return void
      */
     public function setStartAtAttribute($startAt)
@@ -115,7 +115,7 @@ class Event extends Model
 
     /**
      * Save the Voting Start At attribute as a Carbon Instance
-     * 
+     *
      * @return void
      */
     public function setVotingStartAtAttribute($votingStartAt)
@@ -125,7 +125,7 @@ class Event extends Model
 
     /**
      * Save the End At attribute as a Carbon Instance
-     * 
+     *
      * @return void
      */
     public function setEndAtAttribute($endAt)

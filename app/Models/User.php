@@ -86,7 +86,7 @@ class User extends Authenticatable
 
     /**
      * The roles that belong to the user.
-     * 
+     *
      * @return /Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function roles()
@@ -96,7 +96,7 @@ class User extends Authenticatable
 
     /**
      * Helper method to check if a user has a role
-     * 
+     *
      * @return boolean
      */
     public function hasRole($role)

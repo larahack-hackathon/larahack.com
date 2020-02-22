@@ -24,7 +24,7 @@ class Role extends Model
 
     /**
      * The users that belong to the role.
-     * 
+     *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function users()
