@@ -17,7 +17,7 @@
                         <table class="table card-body">
                             <thead>
                             <tr>
-                                <th>Id</th>
+                                <th>ID</th>
                                 <th>Type</th>
                                 <th>Name</th>
                                 <th>Start At</th>

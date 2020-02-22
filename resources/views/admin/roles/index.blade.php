@@ -4,14 +4,14 @@
 
     <div class="container">
         <div class="row">
-            @include('admin.nav', ['page' => 'vote-categories'])
+            @include('admin.nav', ['page' => 'roles'])
             @include('admin.messages')
 
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        Vote Categories
-                        <a href="{{ route('admin.vote-categories.create') }}" class="btn btn-primary btn-sm float-right">New</a>
+                        User Roles
+                        <a href="{{ route('admin.roles.create') }}" class="btn btn-primary btn-sm float-right">New</a>
                     </div>
 
                         <table class="table card-body">
@@ -23,17 +23,17 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <?php /** @var \App\VoteCategory $category */ ?>
-                            @foreach($categories as $category)
+                            <?php /** @var \App\Models\Role $role */ ?>
+                            @foreach($roles as $role)
                                 <tr>
-                                    <td>{{ $category->id }}</td>
-                                    <td>{{ $category->name }}</td>
+                                    <td>{{ $role->id }}</td>
+                                    <td>{{ $role->name }}</td>
                                     <td>
-                                        <a href="{{ route('admin.vote-categories.edit', $category) }}" class="btn">Edit</a>
-                                        <form action="{{ route('admin.vote-categories.destroy', $category) }}" method="post">
+                                        <a href="{{ route('admin.roles.edit', $role) }}" class="btn">Edit</a>
+                                        <form action="{{ route('admin.roles.destroy', $role) }}" method="post">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn btn-danger">Delete</button>
+                                            <button role="submit" class="btn btn-danger">Delete</button>
                                         </form>
                                     </td>
                                 </tr>
