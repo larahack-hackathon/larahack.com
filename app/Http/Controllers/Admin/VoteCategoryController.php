@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\VoteCategory;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\VoteCategoryRequest;
+use App\Models\VoteCategory;
+use Illuminate\Http\Request;
 
 class VoteCategoryController extends Controller
 {
