@@ -26,13 +26,28 @@ use Illuminate\Database\Eloquent\Model;
  */
 class VoteCategory extends Model
 {
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
     protected $fillable = ['name'];
 
+    /**
+     * A vote category belongs to meny events
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
     public function events()
     {
         return $this->belongsToMany(Event::class);
     }
 
+    /**
+     * A vote category has many votes
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function votes()
     {
         return $this->hasMany(Vote::class);

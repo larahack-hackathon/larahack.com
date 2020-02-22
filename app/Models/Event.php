@@ -51,10 +51,21 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Event extends Model
 {
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
     protected $fillable = [
         'event_type_id', 'name', 'start_at', 'voting_start_at', 'end_at', 'theme', 'description', 'first_place_prize',
         'second_place_prize', 'third_place_prize', 'runner_up_prize', 'runner_up_amount', 'active',
     ];
+
+    /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
     protected $casts = [
         'start_at' => 'datetime',
         'voting_start_at' => 'datetime',
@@ -62,16 +73,31 @@ class Event extends Model
         'active' => 'boolean',
     ];
 
+    /**
+     * An event belongs to an event type
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function type()
     {
         return $this->belongsTo(EventType::class, 'event_type_id');
     }
 
+    /**
+     * An event has many entries
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function entries()
     {
         return $this->hasMany(Entry::class);
     }
 
+    /**
+     * An event belongs to many voting categories
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
     public function vote_categories()
     {
         return $this->belongsToMany(VoteCategory::class)->withTimestamps();
