@@ -2,24 +2,40 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\VoteCategory;
-use App\Http\Controllers\Controller;
+use App\Models\VoteCategory;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class VoteCategoryController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
         return view('admin.vote-categories.index')
             ->with('categories', VoteCategory::all());
     }
 
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function create()
     {
         return view('admin.vote-categories.create');
     }
 
-    public function store( Request $request )
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
     {
         $request->validate([
             'name' => 'required'
@@ -30,13 +46,26 @@ class VoteCategoryController extends Controller
         return redirect()->route('admin.vote-categories.index')->with('success', 'Vote Category Created');
     }
 
-    public function edit( VoteCategory $category )
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(VoteCategory $category)
     {
         return view('admin.vote-categories.edit')
             ->with('category', $category);
     }
 
-    public function update( Request $request, VoteCategory $category )
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, VoteCategory $category)
     {
         $request->validate([
             'name' => 'required'
@@ -48,11 +77,17 @@ class VoteCategoryController extends Controller
         return redirect()->route('admin.vote-categories.index')->with('success', 'Vote Category Updated');
     }
 
-    public function destroy( VoteCategory $category )
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(VoteCategory $category)
     {
-        try{
+        try {
             $category->delete();
-        } catch(\Throwable $exception){
+        } catch (\Throwable $exception) {
             return redirect()->route('admin.vote-categories.index')->with('error', $exception->getMessage());
         }
 

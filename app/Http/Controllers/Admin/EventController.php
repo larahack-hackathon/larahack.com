@@ -2,27 +2,43 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Event;
-use App\EventType;
-use App\Http\Controllers\Controller;
 use Carbon\Carbon;
+use App\Models\Event;
+use App\Models\EventType;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class EventController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
         return view('admin.events.index')
             ->with('events', Event::with('type')->withCount('entries')->get());
     }
 
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function create()
     {
         return view('admin.events.create')
             ->with('types', EventType::all());
     }
 
-    public function store( Request $request )
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
     {
         $data = $request->validate([
             'event_type_id' => ['required', 'exists:'.EventType::class.',id'],
@@ -45,14 +61,27 @@ class EventController extends Controller
         return redirect()->route('admin.events.index')->with('success', 'Event Created');
     }
 
-    public function edit( Event $event )
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(Event $event)
     {
         return view('admin.events.edit')
             ->with('types', EventType::all())
             ->with('event', $event);
     }
 
-    public function update( Request $request, Event $event )
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, Event $event)
     {
         $request->validate([
             'event_type_id' => ['required', 'exists:'.EventType::class.',id'],
@@ -88,11 +117,17 @@ class EventController extends Controller
         return redirect()->route('admin.events.index')->with('success', 'Event Updated');
     }
 
-    public function destroy( Event $event )
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Event $event)
     {
-        try{
+        try {
             $event->delete();
-        } catch(\Throwable $exception){
+        } catch (\Throwable $exception) {
             return redirect()->route('admin.events.index')->with('error', $exception->getMessage());
         }
 

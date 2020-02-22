@@ -2,24 +2,40 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\EventType;
-use App\Http\Controllers\Controller;
+use App\Models\EventType;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class TypeController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
         return view('admin.types.index')
             ->with('types', EventType::all());
     }
 
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function create()
     {
         return view('admin.types.create');
     }
 
-    public function store( Request $request )
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
     {
         $request->validate([
             'name' => 'required'
@@ -30,13 +46,26 @@ class TypeController extends Controller
         return redirect()->route('admin.types.index')->with('success', 'Event Type Created');
     }
 
-    public function edit( EventType $type )
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(EventType $type)
     {
         return view('admin.types.edit')
             ->with('type', $type);
     }
 
-    public function update( Request $request, EventType $type )
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, EventType $type)
     {
         $request->validate([
             'name' => 'required'
@@ -48,11 +77,17 @@ class TypeController extends Controller
         return redirect()->route('admin.types.index')->with('success', 'Event Type Updated');
     }
 
-    public function destroy( EventType $type )
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(EventType $type)
     {
-        try{
+        try {
             $type->delete();
-        } catch(\Throwable $exception){
+        } catch (\Throwable $exception) {
             return redirect()->route('admin.types.index')->with('error', $exception->getMessage());
         }
 
