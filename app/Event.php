@@ -10,9 +10,9 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $id
  * @property int $event_type_id
  * @property string $name
- * @property string|null $start_at
- * @property string|null $voting_start_at
- * @property string|null $end_at
+ * @property \Illuminate\Support\Carbon|null $start_at
+ * @property \Illuminate\Support\Carbon|null $voting_start_at
+ * @property \Illuminate\Support\Carbon|null $end_at
  * @property string|null $theme
  * @property string|null $description
  * @property string|null $first_place_prize
@@ -20,7 +20,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string|null $third_place_prize
  * @property string|null $runner_up_prize
  * @property string|null $runner_up_amount
- * @property int $active
+ * @property bool $active
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Entry[] $entries
@@ -51,9 +51,20 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Event extends Model
 {
+    protected $fillable = [
+        'event_type_id', 'name', 'start_at', 'voting_start_at', 'end_at', 'theme', 'description', 'first_place_prize',
+        'second_place_prize', 'third_place_prize', 'runner_up_prize', 'runner_up_amount', 'active',
+    ];
+    protected $casts = [
+        'start_at' => 'datetime',
+        'voting_start_at' => 'datetime',
+        'end_at' => 'datetime',
+        'active' => 'boolean',
+    ];
+
     public function type()
     {
-        return $this->belongsTo(EventType::class);
+        return $this->belongsTo(EventType::class, 'event_type_id');
     }
 
     public function entries()

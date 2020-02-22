@@ -33,4 +33,28 @@ Route::prefix('admin')->namespace('Admin')->name('admin.')->middleware(['auth', 
             Route::delete('/', 'TypeController@destroy')->name('destroy');
         });
     });
+
+    Route::prefix('vote-categories')->name('vote-categories.')->group(function (){
+        Route::get('/', 'VoteCategoryController@index')->name('index');
+        Route::get('/create', 'VoteCategoryController@create')->name('create');
+        Route::post('/', 'VoteCategoryController@store')->name('store');
+
+        Route::prefix('/{category}')->group(function (){
+            Route::get('/edit', 'VoteCategoryController@edit')->name('edit');
+            Route::post('/', 'VoteCategoryController@update')->name('update');
+            Route::delete('/', 'VoteCategoryController@destroy')->name('destroy');
+        });
+    });
+
+    Route::prefix('events')->name('events.')->group(function (){
+        Route::get('/', 'EventController@index')->name('index');
+        Route::get('/create', 'EventController@create')->name('create');
+        Route::post('/', 'EventController@store')->name('store');
+
+        Route::prefix('/{event}')->group(function (){
+            Route::get('/edit', 'EventController@edit')->name('edit');
+            Route::post('/', 'EventController@update')->name('update');
+            Route::delete('/', 'EventController@destroy')->name('destroy');
+        });
+    });
 });

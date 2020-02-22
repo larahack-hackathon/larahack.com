@@ -29,6 +29,8 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Vote extends Model
 {
+    protected $fillable = ['entry_id', 'user_id', 'vote_category_id'];
+
     public function entry()
     {
         return $this->belongsTo(Entry::class);

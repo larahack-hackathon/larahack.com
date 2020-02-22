@@ -36,6 +36,8 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Entry extends Model
 {
+    protected $fillable = ['team_id', 'event_id', 'name', 'url', 'source', 'description',];
+
     public function team()
     {
         return $this->belongsTo(Team::class);

@@ -28,6 +28,8 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Team extends Model
 {
+    protected $fillable = ['owner_id', 'name'];
+
     public function user()
     {
         return $this->belongsToMany(User::class)->withTimestamps();

@@ -3,6 +3,9 @@
 @section('content')
 
     <div class="container">
+
+        @include('admin.nav', ['page' => 'admin'])
+
         <div class="row mb-4">
             <div class="col-3">
                 <div class="card">
@@ -35,7 +38,7 @@
                     <div class="card-header">Admin</div>
 
                     <div class="card-body">
-                        Admin Section!
+
                     </div>
                 </div>
             </div>
