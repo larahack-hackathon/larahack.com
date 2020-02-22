@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\EventType;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\EventTypeRequest;
 
 class TypeController extends Controller
 {
@@ -35,12 +36,8 @@ class TypeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(EventTypeRequest $request)
     {
-        $request->validate([
-            'name' => 'required',
-        ]);
-
         EventType::create(['name' => $request->input('name')]);
 
         return redirect()->route('admin.types.index')->with('success', 'Event Type Created');
@@ -61,16 +58,12 @@ class TypeController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\EventTypeRequest  $request
      * @param  \App\Models\EventType  $type
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, EventType $type)
+    public function update(EventTypeRequest $request, EventType $type)
     {
-        $request->validate([
-            'name' => 'required',
-        ]);
-
         $type->name = $request->input('name');
         $type->save();
 

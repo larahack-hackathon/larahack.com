@@ -102,4 +102,34 @@ class Event extends Model
     {
         return $this->belongsToMany(VoteCategory::class)->withTimestamps();
     }
+
+    /**
+     * Save the Start At attribute as a Carbon Instance
+     * 
+     * @return void
+     */
+    public function setStartAtAttribute($startAt)
+    {
+        $this->attributes['start_at'] = now()->make($startAt);
+    }
+
+    /**
+     * Save the Voting Start At attribute as a Carbon Instance
+     * 
+     * @return void
+     */
+    public function setVotingStartAtAttribute($votingStartAt)
+    {
+        $this->attributes['voting_start_at'] = now()->make($votingStartAt);
+    }
+
+    /**
+     * Save the End At attribute as a Carbon Instance
+     * 
+     * @return void
+     */
+    public function setEndAtAttribute($endAt)
+    {
+        $this->attributes['end_at'] = now()->make($endAt);
+    }
 }
