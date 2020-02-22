@@ -64,7 +64,7 @@ class EventController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Event  $event
      * @return \Illuminate\Http\Response
      */
     public function edit(Event $event)
@@ -78,7 +78,7 @@ class EventController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\Event  $event
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Event $event)
@@ -120,7 +120,7 @@ class EventController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\Event  $event
      * @return \Illuminate\Http\Response
      */
     public function destroy(Event $event)
