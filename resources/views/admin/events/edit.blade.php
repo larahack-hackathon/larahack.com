@@ -14,6 +14,7 @@
                     <div class="card-body">
                         <form action="{{ route('admin.events.update', $event) }}" method="post">
                             @csrf
+                            @method('PATCH')
 
                             <div class="form-group">
                                 <label for="event_type_id">Event Type</label>

@@ -65,7 +65,7 @@ class User extends Authenticatable
     ];
 
     /**
-     * A user belongs to many teams
+     * A user belongs to many teams.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
@@ -75,12 +75,32 @@ class User extends Authenticatable
     }
 
     /**
-     * A user has many votes
+     * A user has many votes.
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function votes()
     {
         $this->hasMany(Vote::class);
+    }
+
+    /**
+     * The roles that belong to the user.
+     *
+     * @return /Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class);
+    }
+
+    /**
+     * Helper method to check if a user has a role.
+     *
+     * @return bool
+     */
+    public function hasRole($role)
+    {
+        return $this->roles()->where('name', $role)->exists();
     }
 }

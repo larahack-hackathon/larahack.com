@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\VoteCategory;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\VoteCategoryRequest;
+use App\Models\VoteCategory;
+use Illuminate\Http\Request;
 
 class VoteCategoryController extends Controller
 {
@@ -48,9 +48,9 @@ class VoteCategoryController extends Controller
      * @param  \App\Models\VoteCategory  $category
      * @return \Illuminate\Http\Response
      */
-    public function edit(VoteCategory $category)
+    public function edit(VoteCategory $voteCategory)
     {
-        return view('admin.vote-categories.edit')->with('category', $category);
+        return view('admin.vote-categories.edit')->with('category', $voteCategory);
     }
 
     /**
@@ -60,9 +60,10 @@ class VoteCategoryController extends Controller
      * @param  \App\Models\VoteCategory  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(VoteCategoryRequest $request, VoteCategory $category)
+    public function update(VoteCategoryRequest $request, VoteCategory $voteCategory)
     {
         $category->update($request->validated());
+
         return redirect()->route('admin.vote-categories.index')->with('success', 'Vote Category Updated');
     }
 
