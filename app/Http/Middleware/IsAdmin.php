@@ -15,6 +15,9 @@ class IsAdmin
      */
     public function handle($request, Closure $next)
     {
-        return $next($request);
+        if ((auth()->check()) && (auth()->user()->hasRole('Administrator'))) {
+            return $next($request);
+        }
+        return back();
     }
 }
