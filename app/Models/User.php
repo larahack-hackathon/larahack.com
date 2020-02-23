@@ -103,4 +103,14 @@ class User extends Authenticatable
     {
         return $this->roles()->where('name', $role)->exists();
     }
+
+    /**
+     * Helper method to check if a user has a team.
+     * 
+     * @return bool
+     */
+    public function hasTeam($id)
+    {
+        return $this->teams()->where('id', $id)->exists();
+    }
 }

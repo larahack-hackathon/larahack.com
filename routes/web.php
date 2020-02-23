@@ -20,15 +20,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::middleware(['auth'])->group(function () {
-    Route::prefix('teams')->name('teams.')->group(function () {
-        Route::get('/', 'TeamController@index')->name('index');
-        Route::get('/create', 'TeamController@create')->name('create');
-        Route::post('/', 'TeamController@store')->name('store');
+    Route::resource('teams', 'TeamController')->except(['show']);
 
-        Route::prefix('/{team}')->group(function () {
-            Route::get('/edit', 'TeamController@edit')->name('edit');
-            Route::post('/', 'TeamController@update')->name('update');
-            Route::delete('/', 'TeamController@destroy')->name('destroy');
-        });
-    });
+    Route::resource('team-users', 'TeamUserController')->except(['show']);
 });

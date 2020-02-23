@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Team;
 use Illuminate\Http\Request;
+use App\Http\Requests\TeamRequest;
 
 class TeamController extends Controller
 {
@@ -13,7 +15,10 @@ class TeamController extends Controller
      */
     public function index()
     {
-        return view('teams.index')->with('teams', auth()->user()->teams()->withCount('users')->get());
+        return view('teams.index')
+                ->with('user_teams', auth()->user()->teams()->withCount('users')->get())
+                ->with('teams', Team::withCount('users')->get())
+                ->with('archived_teams', Team::withTrashed()->where('owner_id', auth()->id())->whereNotNull('deleted_at')->withCount('users')->get());
     }
 
     /**
@@ -23,18 +28,25 @@ class TeamController extends Controller
      */
     public function create()
     {
-        //
+        return view('teams.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\TeamRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(TeamRequest $request)
     {
-        //
+        $team = Team::create([
+            'name' => $request->input('name'),
+            'owner_id' => $request->user()->id
+        ]);
+        
+        auth()->user()->teams()->attach($team->id);
+
+        return redirect()->route('teams.index')->with('status', 'Team Created');
     }
 
     /**

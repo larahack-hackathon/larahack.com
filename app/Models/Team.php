@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * App\Models\Team.
@@ -29,12 +30,14 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Team extends Model
 {
+    use SoftDeletes;
+    
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-    protected $fillable = ['owner_id', 'name'];
+    protected $fillable =  ['owner_id', 'name'];
 
     /**
      * A team belongs to a user.
