@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -30,7 +31,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class Team extends Model
 {
-    use SoftDeletes;
+    use SoftDeletes, Sluggable;
     
     /**
      * The attributes that are mass assignable.
@@ -67,5 +68,29 @@ class Team extends Model
     public function entries()
     {
         return $this->hasMany(Entry::class);
+    }
+
+    /**
+     * Get the route key for the model.
+     *
+     * @return string
+     */
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
+    /**
+     * Return the sluggable configuration array for this model.
+     *
+     * @return array
+     */
+    public function sluggable()
+    {
+        return [
+            'slug' => [
+                'source' => 'name'
+            ]
+        ];
     }
 }

@@ -17,7 +17,7 @@ class TeamUserController extends Controller
     public function update(Request $request, $teamId)
     {
         $team = Team::withTrashed()->find($teamId);
-        
+
         // If we're reclaiming a team, we need to restore it.
         if (!is_null($team->deleted_at)) {
             $team->restore();
@@ -41,7 +41,7 @@ class TeamUserController extends Controller
         auth()->user()->teams()->detach($team);
 
          // If there are no members in the team left, or if the team owner leaves, archive (Soft Delete) it.
-        if (($team->users->count() == 0) && ($team->owner_id == auth()->id())) {
+        if (($team->users->count() == 0) || ($team->owner_id == auth()->id())) {
             $team->delete();
         }
 

@@ -25,7 +25,6 @@
             </div>
         </div>
         {{-- / Welcome to Larahack --}}
-    
         
         {{-- Teams User Belongs To --}}
         @if (!$user_teams->isEmpty())
@@ -50,21 +49,24 @@
                                     <td>{{ $team->owner->name }}</td>
                                     <td>{{ $team->users_count }}</td>
                                     <td>
-                                        @if (!auth()->user()->hasTeam($team->id))
-                                        <form action="{{route('team-users.store', $team)}}" method="POST">
-                                            @csrf
-                                            @method('POST')
+                                        <div class="btn-group">
+                                            <a href="{{route('teams.show', $team)}}" class="btn btn-sm btn-primary">View Team</a>
+                                            @if (!auth()->user()->hasTeam($team->id))
+                                            <form action="{{route('team-users.store', $team->id)}}" method="POST">
+                                                @csrf
+                                                @method('POST')
 
-                                            <button type="submit" class="btn btn-sm btn-success">Join</button>
-                                        </form>
-                                        @else
-                                        <form action="{{route('team-users.destroy', $team)}}" method="POST">
-                                            @csrf
-                                            @method('DELETE')
+                                                <button type="submit" class="btn btn-sm btn-success">Join</button>
+                                            </form>
+                                            @else
+                                            <form action="{{route('team-users.destroy', $team->id)}}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
 
-                                            <button type="submit" class="btn btn-sm btn-link">Leave</button>
-                                        </form>
-                                        @endif
+                                                <button type="submit" class="btn btn-sm btn-link">Leave</button>
+                                            </form>
+                                            @endif
+                                        </div>
                                     </td>
                                 </tr>
                             @endforeach
@@ -102,14 +104,14 @@
                                     <td>{{ $team->users_count }}</td>
                                     <td>
                                         @if (!auth()->user()->hasTeam($team->id))
-                                        <form action="{{route('team-users.update', $team)}}" method="POST">
+                                        <form action="{{route('team-users.update', $team->id)}}" method="POST">
                                             @csrf
                                             @method('PATCH')
 
                                             <button type="submit" class="btn btn-sm btn-success">Join</button>
                                         </form>
                                         @else
-                                        <form action="{{route('team-users.destroy', $team)}}" method="POST">
+                                        <form action="{{route('team-users.destroy', $team->id)}}" method="POST">
                                             @csrf
                                             @method('DELETE')
 
@@ -150,14 +152,14 @@
                                     <td>{{ $team->users_count }}</td>
                                     <td>
                                         @if (!auth()->user()->hasTeam($team->id))
-                                        <form action="{{route('team-users.update', $team)}}" method="POST">
+                                        <form action="{{route('team-users.update', $team->id)}}" method="POST">
                                             @csrf
                                             @method('PATCH')
 
                                             <button type="submit" class="btn btn-sm btn-success">Unarchive &amp; Reclaim</button>
                                         </form>
                                         @else
-                                        <form action="{{route('team-users.destroy', $team)}}" method="POST">
+                                        <form action="{{route('team-users.destroy', $team->id)}}" method="POST">
                                             @csrf
                                             @method('DELETE')
 
