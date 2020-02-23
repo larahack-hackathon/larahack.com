@@ -32,7 +32,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Team extends Model
 {
     use SoftDeletes, Sluggable;
-    
+
     /**
      * The attributes that are mass assignable.
      *
@@ -90,7 +90,7 @@ class Team extends Model
         return [
             'slug' => [
                 'source' => 'name',
-            ]
+            ],
         ];
     }
 }

@@ -22,7 +22,7 @@ class TeamUserController extends Controller
         if (! is_null($team->deleted_at)) {
             $team->restore();
         }
-        
+
         auth()->user()->teams()->attach($team);
 
         return redirect()->route('teams.index')->with('status', 'You have joined this team.');
@@ -37,7 +37,7 @@ class TeamUserController extends Controller
     public function destroy($teamId)
     {
         $team = Team::withTrashed()->find($teamId);
-        
+
         auth()->user()->teams()->detach($team);
 
         // If there are no members in the team left, or if the team owner leaves, archive (Soft Delete) it.

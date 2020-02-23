@@ -43,7 +43,7 @@ class TeamController extends Controller
             'name' => $request->input('name'),
             'owner_id' => $request->user()->id,
         ]);
-        
+
         auth()->user()->teams()->attach($team->id);
 
         return redirect()->route('teams.index')->with('status', 'Team Created');
