@@ -52,7 +52,7 @@ class TeamController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Team  $team
      * @return \Illuminate\Http\Response
      */
     public function show(Team $team)
@@ -66,7 +66,7 @@ class TeamController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Team $team)
     {
         //
     }
