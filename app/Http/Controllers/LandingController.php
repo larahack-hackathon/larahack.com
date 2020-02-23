@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Event;
-use Illuminate\Http\Request;
 
 class LandingController extends Controller
 {
@@ -18,7 +17,7 @@ class LandingController extends Controller
     {
         $streams = collect([]);
 
-        for($i = 1; $i <= 6; $i++){
+        for ($i = 1; $i <= 6; $i++) {
             $streams->add(['name' => 'Lee', 'twitch' => 'crosdale']);
         }
 

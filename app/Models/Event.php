@@ -136,19 +136,19 @@ class Event extends Model
         $this->attributes['end_at'] = now()->make($endAt);
     }
 
-    public function scopeActive( Builder $query )
+    public function scopeActive(Builder $query)
     {
         return $query->where('active', true);
     }
 
-    public function scopeNotStarted( Builder $query )
+    public function scopeNotStarted(Builder $query)
     {
         return $query->where('start_at', '>', now());
     }
 
-    public function scopeNotEnded( Builder $query )
+    public function scopeNotEnded(Builder $query)
     {
-        return $query->where(function($q){
+        return $query->where(function ($q) {
             return $q->where('end_at', '>', now())
                 ->orWhereNull('end_at');
         });
@@ -169,7 +169,7 @@ class Event extends Model
         return $this->isStarted() && $this->voting_start_at > now();
     }
 
-    public function isVotingStarted(  )
+    public function isVotingStarted()
     {
         return $this->isStarted() && $this->voting_start_at < now();
     }
@@ -183,5 +183,4 @@ class Event extends Model
     {
         return $this->end_at < now();
     }
-
 }

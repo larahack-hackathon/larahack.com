@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Relations\Pivot;
 
 /**
- * App\Models\RoleUser
+ * App\Models\RoleUser.
  *
  * @property int $id
  * @property int $user_id
