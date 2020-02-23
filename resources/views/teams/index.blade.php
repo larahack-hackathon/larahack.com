@@ -25,12 +25,11 @@
             </div>
         </div>
         {{-- / Welcome to Larahack --}}
-        
-        <br>
+    
         
         {{-- Teams User Belongs To --}}
         @if (!$user_teams->isEmpty())
-        <div class="row">
+        <div class="row mb-4">
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">Your Teams</div>
@@ -79,11 +78,9 @@
         </div>
         @endif
         {{-- / Teams User Belongs To --}}
-
-        <br>
         
         {{-- All Teams --}}
-        <div class="row">
+        <div class="row mb-4">
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">All Teams</div>
@@ -129,11 +126,9 @@
         </div>
         {{-- / All Teams --}}
 
-        <br>
-
         {{-- Archived Teams --}}
         @if (!$archived_teams->isEmpty())
-        <div class="row">
+        <div class="row mb-4">
             <div class="col-md-12">
                 <div class="card border-danger">
                     <div class="card-header">Archived Teams</div>
@@ -182,7 +177,7 @@
 
         {{-- Projects --}}
         @if (false)
-        <div class="row">
+        <div class="row mb-4">
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">All Projects</div>
