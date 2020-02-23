@@ -38,7 +38,7 @@ class Team extends Model
      *
      * @var array
      */
-    protected $fillable =  ['owner_id', 'name'];
+    protected $fillable = ['owner_id', 'name'];
 
     /**
      * A team belongs to a user.
@@ -89,7 +89,7 @@ class Team extends Model
     {
         return [
             'slug' => [
-                'source' => 'name'
+                'source' => 'name',
             ]
         ];
     }

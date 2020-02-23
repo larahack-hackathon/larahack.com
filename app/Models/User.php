@@ -106,7 +106,7 @@ class User extends Authenticatable
 
     /**
      * Helper method to check if a user has a team.
-     * 
+     *
      * @return bool
      */
     public function hasTeam($id)

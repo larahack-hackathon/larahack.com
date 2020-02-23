@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\TeamRequest;
 use App\Models\Team;
 use Illuminate\Http\Request;
-use App\Http\Requests\TeamRequest;
 
 class TeamController extends Controller
 {
@@ -41,7 +41,7 @@ class TeamController extends Controller
     {
         $team = Team::create([
             'name' => $request->input('name'),
-            'owner_id' => $request->user()->id
+            'owner_id' => $request->user()->id,
         ]);
         
         auth()->user()->teams()->attach($team->id);
