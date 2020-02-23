@@ -28,6 +28,16 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Team whereOwnerId( $value )
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Team whereUpdatedAt( $value )
  * @mixin \Eloquent
+ * @property string $slug
+ * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Team findSimilarSlugs($attribute, $config, $slug)
+ * @method static bool|null forceDelete()
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Team onlyTrashed()
+ * @method static bool|null restore()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Team whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Team whereSlug($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Team withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Team withoutTrashed()
  */
 class Team extends Model
 {

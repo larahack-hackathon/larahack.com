@@ -31,12 +31,12 @@
 
                             <div class="form-group">
                                 <label for="vote_category_ids[]">Voting Categories</label>
-                                <select class="form-control @error('vote_category_ids[]') is-invalid @enderror" name="vote_category_ids[]" id="vote_category_ids[]" multiple>
+                                <select class="form-control @error('vote_category_ids') is-invalid @enderror" name="vote_category_ids[]" id="vote_category_ids[]" multiple>
                                     @foreach($vote_categories as $vote_category)
-                                        <option value="{{ $vote_category->id }}" @if(old('vote_category_ids[]') == $vote_category->id) selected @endif>{{ $vote_category->name }}</option>
+                                        <option value="{{ $vote_category->id }}" @if(in_array($vote_category->id, old('vote_category_ids', []))) selected @endif>{{ $vote_category->name }}</option>
                                     @endforeach
                                 </select>
-                                @error('vote_category_ids[]')
+                                @error('vote_category_ids')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>

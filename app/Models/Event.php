@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -48,6 +49,8 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Event whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Event whereVotingStartAt($value)
  * @mixin \Eloquent
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Event active()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Event notStarted()
  */
 class Event extends Model
 {
@@ -132,4 +135,53 @@ class Event extends Model
     {
         $this->attributes['end_at'] = now()->make($endAt);
     }
+
+    public function scopeActive( Builder $query )
+    {
+        return $query->where('active', true);
+    }
+
+    public function scopeNotStarted( Builder $query )
+    {
+        return $query->where('start_at', '>', now());
+    }
+
+    public function scopeNotEnded( Builder $query )
+    {
+        return $query->where(function($q){
+            return $q->where('end_at', '>', now())
+                ->orWhereNull('end_at');
+        });
+    }
+
+    public function isNotStarted()
+    {
+        return $this->start_at > now();
+    }
+
+    public function isStarted()
+    {
+        return $this->start_at < now();
+    }
+
+    public function isNotVotingStarted()
+    {
+        return $this->isStarted() && $this->voting_start_at > now();
+    }
+
+    public function isVotingStarted(  )
+    {
+        return $this->isStarted() && $this->voting_start_at < now();
+    }
+
+    public function isNotEnded()
+    {
+        return $this->end_at > now();
+    }
+
+    public function isEnded()
+    {
+        return $this->end_at < now();
+    }
+
 }
