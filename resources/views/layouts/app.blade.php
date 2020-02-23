@@ -23,7 +23,7 @@
     <div id="app">
         @include('layouts.partials.nav')
 
-        <main class="py-4">
+        <main class="{{ isset($mainClass) ? $mainClass : 'py-4' }}">
             @yield('content')
         </main>
     </div>
