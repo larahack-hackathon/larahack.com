@@ -6,7 +6,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
 /**
- * App\User.
+ * App\Models\User.
  *
  * @property int $id
  * @property string $name
@@ -102,5 +102,15 @@ class User extends Authenticatable
     public function hasRole($role)
     {
         return $this->roles()->where('name', $role)->exists();
+    }
+
+    /**
+     * Helper method to check if a user has a team.
+     *
+     * @return bool
+     */
+    public function hasTeam($id)
+    {
+        return $this->teams()->where('id', $id)->exists();
     }
 }
