@@ -1,8 +1,50 @@
 // Fonts
 @import url('https://fonts.googleapis.com/css?family=Nunito');
 
+@import "../../node_modules/bootstrap/scss/functions";
+
 // Variables
 @import 'variables';
 
 // Bootstrap
-@import '~bootstrap/scss/bootstrap';
+@import '../../node_modules/bootstrap/scss/bootstrap';
+
+.bg-brand-gradient {
+    background: linear-gradient(0deg, #e66587 0%, #f09458 100%);
+    color: $light;
+}
+
+.btn-xl {
+    padding: .75rem 1.25rem;
+    font-size: 1.5rem;
+    line-height: 1.3;
+}
+
+.btn-border {
+    border: $gray-500 solid 1px ;
+}
+
+.display-5 {
+    font-size: 2.5rem;
+    font-weight: 300;
+    line-height: 1.2;
+}
+
+.display-6 {
+    font-size: 2.0rem;
+    font-weight: 300;
+    line-height: 1.2;
+}
+
+.display-7 {
+    font-size: 1.5rem;
+    font-weight: 300;
+    line-height: 1.2;
+}
+
+.display-8 {
+    font-size: 1.25rem;
+    font-weight: 300;
+    line-height: 1.2;
+}
+
